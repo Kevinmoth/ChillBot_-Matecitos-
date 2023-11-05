@@ -256,6 +256,14 @@ local abilities = {
 		end
     end,
     -----------------------------------
+    ["golpe_runa"] = function()
+    if ni.unit.buff("player", 19263) or ni.unit.buff("player", 26669) then
+        if ni.spell.available(spells.golpe_runa) then
+            ni.spell.cast(spells.golpe_runa)
+       	end
+        end
+    end,			
+	 --------------------------
     ["auto-target"] = function()
         local target_ = ni.objects["target"];
         local target__ = target_.guid
