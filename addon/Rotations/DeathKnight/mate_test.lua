@@ -1,17 +1,17 @@
 local t4=0
 local enables = {
     ["target"] = true,
-    ["shild"] = true,
-    ["gorn"] = true,
+    ["escudo_oseo"] = true,
+    ["cuerno"] = true,
     ["pet"] = true,
-    ["stoika"] = true,
+    ["presencias"] = true,
     ["ik"] = true,
     ["lana"] = true,
-    ["nii"] = true,
-    ["ss"] = true,
+    ["entereza"] = true,
+    ["pacto_pet"] = true,
     ["kamen"] = true,
-    ["mor"] = true,
-    ["mor_aoe"] = true,
+    ["pestilencia"] = true,
+    ["pestilencia_aoe"] = true,
     ["kick"] = false,
     ["kick_2"] = false,
     ["kick_3"] = false,
@@ -19,8 +19,8 @@ local enables = {
 }
 local values = {
     kamen = 35,
-        ss = 20,
-        nii = 30,
+        pacto_pet = 20,
+        entereza = 30,
 }
 local inputs = {
     kiick = "",
@@ -49,18 +49,18 @@ local items = {
         { type = "separator" },
         { type = "entry", text = ni.spell.icon(6603).." Auto targeting", tooltip ="Selecciona automáticamente un objetivo cuando no hay uno", enabled = true, key = "target" },
         { type = "separator" },
-        { type = "entry", text = ni.spell.icon(48265).." Cambio de puntales", tooltip ="Cambio automático de puntales", enabled = true, key = "stoika" },
+        { type = "entry", text = ni.spell.icon(48265).." Cambio de puntales", tooltip ="Cambio automático de puntales", enabled = true, key = "presencias" },
         { type = "separator" },
-        { type = "entry", text = ni.spell.icon(57623).." Cuerno Automatico", tooltip ="Utiliza automáticamente cuerno cuando no lo tienes .", enabled = true, key = "gorn" },
-        { type = "entry", text = ni.spell.icon(49222).." Auto Bone Shield", tooltip ="Utiliza automáticamente el Escudo Óseo si no está presente.", enabled = true, key = "shild" },
+        { type = "entry", text = ni.spell.icon(57623).." cuerno Automatico", tooltip ="Utiliza automáticamente cuerno cuando no lo tienes .", enabled = true, key = "cuerno" },
+        { type = "entry", text = ni.spell.icon(49222).." Auto Bone Shield", tooltip ="Utiliza automáticamente el Escudo Óseo si no está presente.", enabled = true, key = "escudo_oseo" },
         { type = "separator" },
         { type = "entry", text = ni.spell.icon(46584).." Auto call Necrofago", tooltip ="Saca al necrofago automaticamente", enabled = true, key = "pet" },
         { type = "separator" },
     { type = "entry", text = ni.spell.icon(24803).." Mostrar depuracion en chat", enabled = false, key = "debug" },
         { type = "page", number = 2, text = "|cffFFFF00Ajustes avanzados|r" },
     	{ type = "separator" },	
-	{ type = "entry", text = ni.spell.icon(50842).." Renovar pestes con pestielecia", tooltip ="Actualizar pestes co POestilencia", enabled = true, key = "mor" },
-        { type = "entry", text = ni.spell.icon(50842).." epstilencia para AoE", tooltip ="Usar pestilencia para propagar pestes", enabled = true, key = "mor_aoe" },
+	{ type = "entry", text = ni.spell.icon(50842).." Renovar pestes con pestielecia", tooltip ="Actualizar pestes co POestilencia", enabled = true, key = "pestilencia" },
+        { type = "entry", text = ni.spell.icon(50842).." epstilencia para AoE", tooltip ="Usar pestilencia para propagar pestes", enabled = true, key = "pestilencia_aoe" },
 	{ type = "separator" },
     { type = "entry", text = ni.spell.icon(47528).." Autokick", tooltip ="Interrumpe todos los hechizos", enabled = false, key = "kick" },
     { type = "entry", text = " dentro del alcance", tooltip ="Interrumpe a todos los que estén dentro del alcance (no sólo al objetivo)", enabled = false, key = "kick_2" },
@@ -80,9 +80,9 @@ local items = {
         { type = "page", number = 4, text = "|cffFFFF00cajas fuertes|r" },
         { type = "separator" },
         { type = "entry", text = ni.spell.icon(48792).." Entereza ligada al Hielo", tooltip ="Usar entereza ligada al Hielo para |cFF00FF00Hp <|r\
-Работает в связке e функцией TTD(Time To Die)", enabled = true, value = 40, min = 1, max = 100, step = 1, key = "nii" },
+Работает в связке e функцией TTD(Time To Die)", enabled = true, value = 40, min = 1, max = 100, step = 1, key = "entereza" },
         { type = "entry", text = ni.spell.icon(48743).." Pacto de muerte", tooltip ="Usar pacto de muerte en |cFF00FF00Hp <|r\
-Работает в связке e функцией TTD(Time To Die)", enabled = true, value = 20, min = 1, max = 100, step = 1, key = "ss" },
+Работает в связке e функцией TTD(Time To Die)", enabled = true, value = 20, min = 1, max = 100, step = 1, key = "pacto_pet" },
         { type = "entry", text = ni.spell.icon(11729).." Piedra de la Salud", tooltip ="Usar pepino en |cFF00FF00Hp <|r\
 Работает в связке e функцией TTD(Time To Die)", enabled = true, value = 30, min = 1, max = 100, step = 1, key = "kamen" },
 	{ type = "page", number = 5, text = "|cffFFFF00Umblal de vida baja|r" },
@@ -107,27 +107,28 @@ local cache = {
     control = false,
     };
 local spells = {
-    gorn = GetSpellInfo(57623),
-    shild = GetSpellInfo(49222),
+    golpe_runa = GetSpellInfo(56815),
+    cuerno = GetSpellInfo(57623),
+    escudo_oseo = GetSpellInfo(49222),
     pet = GetSpellInfo(46584),
-    oznob = GetSpellInfo(45524),
-    chuma = GetSpellInfo(49921),
-    plet = GetSpellInfo(55271),
-    luza = GetSpellInfo(49938),
-    garga = GetSpellInfo(49206),
+    cadenas = GetSpellInfo(45524),
+    golpe_peste = GetSpellInfo(49921),
+    golpe_plaga = GetSpellInfo(55271),
+    muerte_y_desc = GetSpellInfo(49938),
+    gargola = GetSpellInfo(49206),
     lik = GetSpellInfo(49895),
     golpe_mortal = GetSpellInfo(49924),
-    krov_udar = GetSpellInfo(49930),
-    mor = GetSpellInfo(50842),
+    golpe_sangriento = GetSpellInfo(49930),
+    pestilencia = GetSpellInfo(50842),
     presencia_escarcha = GetSpellInfo(48263),
     char_rass = GetSpellInfo(316432),
-    usilenie = GetSpellInfo(47568),
-    stoika_b = GetSpellInfo(48266),
+    potenciar_runas = GetSpellInfo(47568),
+    p_sangre = GetSpellInfo(48266),
     p_profana = GetSpellInfo(48265),
-    krovootvod = GetSpellInfo(45529),
-    zelenka = GetSpellInfo(48707),
-    ni = GetSpellInfo(48792),
-    ss = GetSpellInfo(48743),
+    transfusion = GetSpellInfo(45529),
+    caparazon = GetSpellInfo(48707),
+    entereza = GetSpellInfo(48792),
+    pacto_pet = GetSpellInfo(48743),
     kick = GetSpellInfo(47528),
 
     };
@@ -143,23 +144,25 @@ local queue = {
     "pause",
     "auto-target",
     "kick",
+    "golpe_runa",
     "cd",
     "p_profana",
     "save",
     "Frost_defensive",
-    "zelenka",
-    "mor",
-    "mor_aoe",
+    "caparazon",
+    "pestilencia",
+    "pestilencia_aoe",
     "buff",
-    "oznob",
-    "chuma",
-    "krov_udar",
-    "plet",
+    "cadenas",
+    "golpe_peste",
+    "golpe_sangriento",
+    "golpe_plaga",
     "char_rass",
     "lik_buf",
-    "garga",
-    "usilenie",
-    "stoika_b",
+    "gargola",
+    "gargola_Buffed",
+    "potenciar_runas",
+    "p_sangre",
     "lik",
 };
 local abilities = {
@@ -168,12 +171,12 @@ local abilities = {
         if cache.info == true
         and not ni.vars.coin then
             cache.info = false
-            print("|cFFFF0000  =========================|r\
-|cFFFFFFFFАнхоли Дк|r\
-|cFFFF5A00Приватный профиль by Makaren|r\
-|cFF00FFFFФанпей https://funpay.com/users/7303789/|r\
+            print("|cFFFF0000 =========================|r\
+|Perfil privado de Mate|r\
+|Perfil privado de Mate|r\
+|Fanpei https://funpay.com/users/7303789/|r\
 |cFF00FFFFДс https://discord.com/users/785141640087207966|r\
-|cFF00FFFFДс Группы https://discord.gg/eQzcDHbVfm|r\
+|https://discord.gg/eQzcDHbVfm.|r\
 |cFFFF0000=========================|r")
         end
     end,
@@ -260,7 +263,7 @@ local abilities = {
     if ni.unit.buff("player", 19263) or ni.unit.buff("player", 26669) then
         if ni.spell.available(spells.golpe_runa) then
             ni.spell.cast(spells.golpe_runa)
-       	end
+            end
         end
     end,			
 	 --------------------------
@@ -403,7 +406,7 @@ local abilities = {
     end,
     --------------------------
     ["p_profana"] = function()
-        if enables["stoika"]
+        if enables["presencias"]
         and not cache.PlayerCombat
         and not ni.player.buff(48265) then
             if ni.spell.available(spells.p_profana) then
@@ -415,20 +418,20 @@ local abilities = {
     --------------------------
     ["save"] = function()
         if cache.PlayerCombat then
-            if enables["nii"]
-            and ni.unit.hp("player") <= values.nii then
+            if enables["entereza"]
+            and ni.unit.hp("player") <= values.entereza then
                 if ni.unit.ttd("player") < 3
                 and ni.spell.available(spells.ni) then
                     ni.spell.cast(spells.ni)
                 end
             end
-            if enables["ss"]
-            and ni.unit.hp("player") <= values.ss then
+            if enables["pacto_pet"]
+            and ni.unit.hp("player") <= values.pacto_pet then
                 local creator = ni.unit.creator("playerpet")
                 if ni.unit.ttd("player") < 2
                 and creator ~= nil
-                and ni.spell.available(spells.ss) then
-                    ni.spell.cast(spells.ss)
+                and ni.spell.available(spells.pacto_pet) then
+                    ni.spell.cast(spells.pacto_pet)
                 end
             end
             local startTime, duration, enable = GetItemCooldown(36892)
@@ -466,19 +469,19 @@ local abilities = {
         end    
     end,
     --------------------------
-    ["zelenka"] = function()
+    ["caparazon"] = function()
         if cache.PlayerCombat
         and enables["ik"]
-        and ni.player.debuff("Пламя Легиона") then
-            if ni.spell.available(spells.zelenka) then
-                ni.spell.cast(spells.zelenka)
+        and ni.player.debuff("Llama de la Legión") then
+            if ni.spell.available(spells.caparazon) then
+                ni.spell.cast(spells.caparazon)
             end
         end
         if cache.PlayerCombat
         and enables["lana"]
-        and ni.player.debuff("Роящиеся тени") then
-            if ni.spell.available(spells.zelenka) then
-                ni.spell.cast(spells.zelenka)
+        and ni.player.debuff("Enjambre de sombras") then
+            if ni.spell.available(spells.caparazon) then
+                ni.spell.cast(spells.caparazon)
             end
         end
     end,
@@ -497,21 +500,21 @@ local abilities = {
         end
     end,]],
     -------------------------
-    ["mor"] = function()
-        if enables["mor"]
+    ["pestilencia"] = function()
+        if enables["pestilencia"]
         and not cache.control
         and cache.PlayerCombat
         and cache.dots == true
         and cache.dots_obnov then
             local offcd, oncd = ni.rune.bloodrunecd()
             if offcd == 2
-            and ni.spell.available(spells.krovootvod) then
-                ni.spell.cast(spells.krovootvod)
+            and ni.spell.available(spells.transfusion) then
+                ni.spell.cast(spells.transfusion)
                 cache.pet = true
             end
-            if ni.spell.available(spells.mor)
-            and ni.spell.valid("target", spells.mor, false, true, true) then
-                ni.spell.cast(spells.mor, "target")
+            if ni.spell.available(spells.pestilencia)
+            and ni.spell.valid("target", spells.pestilencia, false, true, true) then
+                ni.spell.cast(spells.pestilencia, "target")
                 cache.pet = true
             end
         end
@@ -521,8 +524,8 @@ local abilities = {
 
     --------------------------
 
-    ["mor_aoe"] = function()
-        if enables["mor_aoe"]
+    ["pestilencia_aoe"] = function()
+        if enables["pestilencia_aoe"]
         and not cache.control
         and cache.PlayerCombat
         and cache.dots == true then
@@ -532,9 +535,9 @@ local abilities = {
                 if ni.unit.hpraw(target) > 100000
                 and not ni.unit.debuff(target, 55078, "player")
                 or not ni.unit.debuff(target, 55095, "player") then
-                    if ni.spell.available(spells.mor)
-                    and ni.spell.valid("target", spells.mor, false, true, true) then
-                    ni.spell.cast(spells.mor, "target")
+                    if ni.spell.available(spells.pestilencia)
+                    and ni.spell.valid("target", spells.pestilencia, false, true, true) then
+                    ni.spell.cast(spells.pestilencia, "target")
                     cache.pet = true
                     end
                 end
@@ -543,15 +546,15 @@ local abilities = {
     end,
     -----------------------------------
     ["buff"] = function()
-        if enables["gorn"]
-        and not ni.player.buff(spells.gorn)
-        and ni.spell.available(spells.gorn) then
-            ni.spell.cast(spells.gorn)
+        if enables["cuerno"]
+        and not ni.player.buff(spells.cuerno)
+        and ni.spell.available(spells.cuerno) then
+            ni.spell.cast(spells.cuerno)
         end
-        if enables["shild"]
-        and not ni.player.buff(spells.shild)
-        and ni.spell.available(spells.shild) then
-            ni.spell.cast(spells.shild)
+        if enables["escudo_oseo"]
+        and not ni.player.buff(spells.escudo_oseo)
+        and ni.spell.available(spells.escudo_oseo) then
+            ni.spell.cast(spells.escudo_oseo)
         end
         if enables["pet"] then
             local creator = ni.unit.creator("playerpet")
@@ -562,48 +565,48 @@ local abilities = {
         end
     end,
     --------------------------
-    ["oznob"] = function()
+    ["cadenas"] = function()
         if cache.PlayerCombat
         and not cache.control
         and not ni.unit.debuff("target", 55095, "player")
-        and ni.spell.valid("target", spells.oznob, false, true, true)
-        and ni.spell.available(spells.oznob) then
-            ni.spell.cast(spells.oznob, "target")
+        and ni.spell.valid("target", spells.cadenas, false, true, true)
+        and ni.spell.available(spells.cadenas) then
+            ni.spell.cast(spells.cadenas, "target")
             cache.pet = true
         end
     end,
     --------------------------
-    ["chuma"] = function()
+    ["golpe_peste"] = function()
         if not cache.control
         and cache.PlayerCombat
         and not ni.unit.debuff("target", 55078, "player")
-        and ni.spell.valid("target", spells.chuma, false, true, true)
-        and ni.spell.available(spells.chuma) then
-            ni.spell.cast(spells.chuma, "target")
+        and ni.spell.valid("target", spells.golpe_peste, false, true, true)
+        and ni.spell.available(spells.golpe_peste) then
+            ni.spell.cast(spells.golpe_peste, "target")
             cache.pet = true
         end
     end,
     --------------------------
-    ["krov_udar"] = function()
+    ["golpe_sangriento"] = function()
         if cache.PlayerCombat
         and not cache.control
         and cache.dots == true
         and ni.unit.buffremaining("player", 66803) < 1
-        and ni.spell.valid("target", spells.krov_udar, false, true, true)
-        and ni.spell.available(spells.krov_udar) then
-            ni.spell.cast(spells.krov_udar, "target")
+        and ni.spell.valid("target", spells.golpe_sangriento, false, true, true)
+        and ni.spell.available(spells.golpe_sangriento) then
+            ni.spell.cast(spells.golpe_sangriento, "target")
             cache.pet = true
         end
     end,
     --------------------------
-    ["plet"] = function()
+    ["golpe_plaga"] = function()
         if cache.PlayerCombat
         and not cache.control
         and cache.dots == true
         and ni.unit.buffremaining("player", 304806) < 1
-        and ni.spell.valid("target", spells.plet, false, true, true)
-        and ni.spell.available(spells.plet) then
-            ni.spell.cast(spells.plet, "target")
+        and ni.spell.valid("target", spells.golpe_plaga, false, true, true)
+        and ni.spell.available(spells.golpe_plaga) then
+            ni.spell.cast(spells.golpe_plaga, "target")
             cache.pet = true
         end
     end,
@@ -630,30 +633,41 @@ local abilities = {
         end
     end,
     --------------------------
-    ["garga"] = function()
+    ["gargola_Buffed"] = function()
+        if cache.PlayerCombat
+        and ni.unit.buff("player", 53365)
+        and ni.unit.buff("player", 67773)
+        and ni.unit.buff("player", 53365)
+        and ni.spell.available(spells.lik) then
+            ni.spell.cast(spells.gargola, "target")
+        end
+    end,
+
+    --------------------------
+    ["gargola"] = function()
         if cache.PlayerCombat
         and not cache.control
         and cache.dots == true then
             if ni.unit.isboss("target")
             or ni.vars.combat.cd then
-                if ni.spell.valid("target", spells.garga, false, true, true)
-                and ni.spell.available(spells.garga) then
-                    ni.spell.cast(spells.garga, "target")
+                if ni.spell.valid("target", spells.gargola, false, true, true)
+                and ni.spell.available(spells.gargola) then
+                    ni.spell.cast(spells.gargola, "target")
                     cache.pet = true
                 end
             end
         end
     end,
     --------------------------
-    ["usilenie"] = function()
+    ["potenciar_runas"] = function()
         if cache.PlayerCombat
         and not cache.control
         and cache.dots == true
         and ni.power.current("player") < 80 then
             if ni.unit.isboss("target")
             or ni.vars.combat.cd then
-                if ni.spell.available(spells.usilenie) then
-                    ni.spell.cast(spells.usilenie)
+                if ni.spell.available(spells.potenciar_runas) then
+                    ni.spell.cast(spells.potenciar_runas)
                     cache.pet = true
                 end
             end
