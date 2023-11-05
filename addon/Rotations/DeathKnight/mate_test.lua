@@ -18,7 +18,7 @@ local enables = {
     ["debug"] = false,
 }
 local values = {
-    kamen = 39,
+    kamen = 35,
         pacto_pet = 20,
         entereza = 30,
 }
@@ -637,7 +637,7 @@ local abilities = {
         if cache.PlayerCombat
         and ni.unit.buff("player", 53365)
         and ni.unit.buff("player", 67773)
-        and ni.unit.buff("player", 53365)
+        and ni.unit.buff("player", 67708)
         and ni.spell.available(spells.lik) then
             ni.spell.cast(spells.gargola, "target")
         end
