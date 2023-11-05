@@ -18,7 +18,7 @@ local enables = {
     ["debug"] = false,
 }
 local values = {
-    kamen = 35,
+    kamen = 39,
         pacto_pet = 20,
         entereza = 30,
 }
