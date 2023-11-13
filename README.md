@@ -1,2 +1,4 @@
 # Ni
-Edicion y traduccion de complementos para NI
+Edicion y traduccion de complementos para Hread_py 
+
+(DESCONTINUADO)
