@@ -20,4 +20,5 @@ Ademas, el bot puede permanecer 24/7 en un canal de audio, aun si no hay usuario
 **.unir:** *Hace que el bot se una a un canal de voz específico y reproduzca una pista de audio predeterminada.(para solventar de momento un problema con la desconexion automatica).*   
 **.salir: ** *Desconecta al bot del canal de voz actual*.  
 
+[![image.png](https://i.postimg.cc/VNCQJSbr/image.png)](https://postimg.cc/xknF715n)
 ------------
